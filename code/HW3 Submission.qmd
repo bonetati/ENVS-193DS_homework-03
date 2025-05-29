@@ -35,5 +35,20 @@ factor(
 
 ```
 
+1c.
+Figure 1. This figure shows the distribution and mean of my self reported stress levels by day of the week. Bars represent the average stress level for each day, while points show individual daily reports.
+
+```{r 1d}
+personal_data %>%
+  group_by(Day_of_Week) %>%
+  summarize(`Average Stress Level` = round(mean(Stress_Level, na.rm = TRUE), 1)) %>%
+  rename(`Day of Week` = Day_of_Week) %>%
+  arrange(factor(`Day of Week`, levels = c("Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"))) %>%
+  gt() %>%
+  tab_header(
+    title = "Average Stress Level by Day of the Week",
+  )
+```
+
 
 
