@@ -61,9 +61,7 @@ personal_data %>%
 For my affective visualization I want to combine both art and R. Through learning about different ggplots I want to use the radial plot to look like a flower representing the week. Each size/shape of the petal refers to the amount of stress on average. With this then I hope to overlay pngs of water colors onto the radial plot to represent the feeling and stress of each day. 
 
 2b
-```{r}
-
-```
+![Example](IMG_1244.jpg)
 
 2c
 ```{r}
