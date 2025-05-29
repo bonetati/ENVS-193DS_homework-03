@@ -12,6 +12,8 @@ library(janitor)
 library(readxl)
 library(dplyr)
 library(ggfx)
+library(grid)
+library(png)
 
 # Read in data
 personal_data <- read_csv(here("data", "193data.csv"))
@@ -53,7 +55,7 @@ personal_data %>%
 ```
 
 2a
-An affective visualization of my personal data could be a watercolor painting where each day of the week is represented as a different color strip. The width of each strip corresponds to the average stress level for that day—wider strips for higher stress. Instead of numeric axes, the focus is on emotional resonance, using calm colors for low-stress days and intense, warm colors for high-stress days. This approach is inspired by how emotions are often better conveyed through color and form, rather than charts.
+For my affective visualization I want to combine both art and R. Through learning about different ggplots I want to use the radial plot to look like a flower representing the week. Each size/shape of the petal refers to the amount of stress on average. With this then I hope to overlay pngs onto the radial plot (still in R) to represent the gist of each day. Through this visualization it goes beyong just the correlation between days and stress, but rather looks deeper into factors affecting stress that are common day to day.
 
 2b
 ```{r}
@@ -63,32 +65,21 @@ An affective visualization of my personal data could be a watercolor painting wh
 2c
 ```{r}
 
-library(tidyverse)
-library(ggfx)
-
-# Custom segment widths in the order you requested
+# Your stress and width data
 chunk_order <- c("Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri")
-chunk_sizes <- c(1.7, 2.2, 3.6, 5.2, 3.0, 4.6, 2.7)  # how wide each chunk should be
+chunk_sizes <- c(1.7, 2.2, 3.6, 5.2, 3.0, 4.6, 2.7)
 
-# Stress data
 stress_data <- tibble(
   day = chunk_order,
-  stress = c(1, 2, 3, 4, 5, 6, 7),
+  stress = c(7, 6, 5, 4, 3, 2, 1),
   width = chunk_sizes
-)
-
-stress_data <- stress_data %>%
+) %>%
   mutate(day = factor(day, levels = chunk_order))
 
-# Build the radial plot
-ggplot(stress_data, aes(x = day, y = stress, fill = stress, width = width)) +
-  with_blur(
-    geom_col(color = NA, alpha = 0.95),
-    sigma = 6
-  ) +
-  # Labels if desired:
+# Base radial plot
+ggplot(stress_data, aes(x = day, y = stress, width = width, fill = stress)) +
+  geom_col(color = NA) +
   coord_polar(start = 0) +
-  scale_fill_gradientn(colors = c("#1B263B", "#5DADE2", "#A569BD", "#F1948A", "#C0392B")) +
   theme_void() +
   theme(legend.position = "none")
 
