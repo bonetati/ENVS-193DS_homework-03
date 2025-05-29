@@ -11,9 +11,12 @@ library(gt)
 library(janitor)
 library(readxl)
 library(dplyr)
+
+#Librarys used for artistic purposes
 library(ggfx)
 library(grid)
 library(png)
+library(patchwork)
 
 # Read in data
 personal_data <- read_csv(here("data", "193data.csv"))
@@ -55,7 +58,7 @@ personal_data %>%
 ```
 
 2a
-For my affective visualization I want to combine both art and R. Through learning about different ggplots I want to use the radial plot to look like a flower representing the week. Each size/shape of the petal refers to the amount of stress on average. With this then I hope to overlay pngs onto the radial plot (still in R) to represent the gist of each day. Through this visualization it goes beyong just the correlation between days and stress, but rather looks deeper into factors affecting stress that are common day to day.
+For my affective visualization I want to combine both art and R. Through learning about different ggplots I want to use the radial plot to look like a flower representing the week. Each size/shape of the petal refers to the amount of stress on average. With this then I hope to overlay pngs of water colors onto the radial plot to represent the feeling and stress of each day. 
 
 2b
 ```{r}
@@ -65,23 +68,36 @@ For my affective visualization I want to combine both art and R. Through learnin
 2c
 ```{r}
 
-# Your stress and width data
+# Stress and width data
 chunk_order <- c("Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri")
 chunk_sizes <- c(1.7, 2.2, 3.6, 5.2, 3.0, 4.6, 2.7)
 
 stress_data <- tibble(
-  day = chunk_order,
-  stress = c(7, 6, 5, 4, 3, 2, 1),
-  width = chunk_sizes
+  day = chunk_order, #Order of chunks
+  stress = c(7, 6, 5, 4, 3, 2, 1), #height of chunks
+  width = chunk_sizes #width of chunks
 ) %>%
   mutate(day = factor(day, levels = chunk_order))
 
 # Base radial plot
-ggplot(stress_data, aes(x = day, y = stress, width = width, fill = stress)) +
+p1 <- ggplot(stress_data, aes(x = day, y = stress, width = width, fill = stress)) +
   geom_col(color = NA) +
-  coord_polar(start = 0) +
+  coord_polar(start = 0) + #starting position of chunks
+  theme_void() + #Gets rid of text
+  theme(legend.position = "none")
+
+#Radial plots repeated with different coord_polar
+p2 <- ggplot(stress_data, aes(x = day, y = stress, width = width, fill = stress)) +
+  geom_col(color = NA) +
+  coord_polar(start = 2) +
+  theme_void() +
+  theme(legend.position = "none")
+p3 <- ggplot(stress_data, aes(x = day, y = stress, width = width, fill = stress)) +
+  geom_col(color = NA) +
+  coord_polar(start = 4) +
   theme_void() +
   theme(legend.position = "none")
 
+p1+p2+p3
 ```
 
