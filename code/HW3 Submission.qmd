@@ -14,7 +14,26 @@ library(readxl)
 # Read in data
 personal_data <- read_csv(here("data", "193data.csv"))
 ```
+1a.
+I could calculate the mean stress level for each day of the week to understand if certain days are more stressful. This is informative because I suspect that weekdays, especially Mondays, are more stressful due to academic or work responsibilities, while weekends are probably less stressful.
 
+```{r 1b}
+ggplot(personal_data, aes(x = 
+factor(
+  Day_of_Week,
+  levels = c("Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+), y = Stress_Level, fill = Day_of_Week)) +
+  geom_jitter(width = 0.2, alpha = 0.4) +
+  stat_summary(fun = mean, geom = "col", alpha = 0.6, color = "black") +
+  scale_fill_brewer(palette = "Set2") +
+  labs(
+    title = "Average Stress Level by Day of the Week",
+    x = "Day of the Week",
+    y = "Stress Level"
+  ) +
+  theme_minimal()
+
+```
 
 
 
