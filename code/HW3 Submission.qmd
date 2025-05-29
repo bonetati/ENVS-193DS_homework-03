@@ -99,3 +99,18 @@ p3 <- ggplot(stress_data, aes(x = day, y = stress, width = width, fill = stress)
 p1+p2+p3
 ```
 
+2d
+I am representing the relationship between stress and the days of the week. My influence for this piece was striving for creativity in R, while trying to uniquely represent a simple correlation. The current form of my work is written R code. I created my work through understanding the radial plot.
+
+3a
+The paper uses regression analysis to look at the relationship between predictors and energy efficiency investments. The response variable is the total program budget for energy efficiency, and the predictor variables include factors such as rurality, population size, and other demographic and institutional characteristics.
+![Example](figure.png)
+
+3b 
+The figure clearly represents the statistics by placing x and y axes in logical positions. They also use log transformed values to compare across scales. It includes model predictions via trend lines and confidence intervals alongside the raw data points, making patterns and correlations easy to interpret. Overall, the visualization effectively communicates both the data distribution and statistical relationships.
+
+3c
+The authors handled visual clutter pretty well by organizing the plots into a clean grid format and using consistent color schemes across categories, which improves readability. Each plot is minimalistic, with a high data:ink ratio. Most visual elements directly represent data, such as points, trend lines, or confidence intervals, with little decoration. This clarity enhances the my ability to quickly interpret relationships across variables.
+
+3d
+To improve the figure, I would recommend adding panel labels to make it easier to reference specific plots in the text. Scales for the axis could be standardized across the panels to allow for comparability between counties, cities, and schools. Adding slight transparency or jitter to points would reduce clutter and reveal dense data areas more clearly. Finally, increasing font size for axis labels would make them easier to see.
