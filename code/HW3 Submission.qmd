@@ -1,0 +1,20 @@
+---
+title: "HW 3"
+subtitle: "https://github.com/bonetati/ENVS-193DS_homework-03"
+format: html
+---
+
+```{r setup}
+library(tidyverse)
+library(here)
+library(gt) 
+library(janitor)
+library(readxl)
+
+# Read in data
+personal_data <- read_csv(here("data", "193data.csv"))
+```
+
+
+
+
