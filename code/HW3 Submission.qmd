@@ -50,5 +50,8 @@ personal_data %>%
   )
 ```
 
+2a
+An affective visualization of my personal data could be a watercolor painting where each day of the week is represented as a different color strip. The width of each strip corresponds to the average stress level for that day—wider strips for higher stress. Instead of numeric axes, the focus is on emotional resonance, using calm colors for low-stress days and intense, warm colors for high-stress days. This approach is inspired by how emotions are often better conveyed through color and form, rather than charts.
+
 
 
